@@ -40,21 +40,22 @@ const DashboardLayout = () => {
     );
 };
 
-return (
-    <HashRouter>
-        <AuthProvider>
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/signup" element={<SignUp />} />
-                <Route path="/*" element={
-                    <PrivateRoute>
-                        <DashboardLayout />
-                    </PrivateRoute>
-                } />
-            </Routes>
-        </AuthProvider>
-    </HashRouter>
-);
+function App() {
+    return (
+        <HashRouter>
+            <AuthProvider>
+                <Routes>
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/signup" element={<SignUp />} />
+                    <Route path="/*" element={
+                        <PrivateRoute>
+                            <DashboardLayout />
+                        </PrivateRoute>
+                    } />
+                </Routes>
+            </AuthProvider>
+        </HashRouter>
+    );
 }
 
 export default App;
