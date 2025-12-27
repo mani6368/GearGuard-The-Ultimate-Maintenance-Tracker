@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { HashRouter, Routes, Route } from 'react-router-dom';
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './components/PrivateRoute';
 import Login from './pages/Login';
@@ -40,25 +40,21 @@ const DashboardLayout = () => {
     );
 };
 
-function App() {
-    // Set basename based on environment, matching vite.config.js
-    const basename = import.meta.env.MODE === 'production' ? '/GearGuard-The-Ultimate-Maintenance-Tracker' : '/';
-
-    return (
-        <BrowserRouter basename={basename}>
-            <AuthProvider>
-                <Routes>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/signup" element={<SignUp />} />
-                    <Route path="/*" element={
-                        <PrivateRoute>
-                            <DashboardLayout />
-                        </PrivateRoute>
-                    } />
-                </Routes>
-            </AuthProvider>
-        </BrowserRouter>
-    );
+return (
+    <HashRouter>
+        <AuthProvider>
+            <Routes>
+                <Route path="/login" element={<Login />} />
+                <Route path="/signup" element={<SignUp />} />
+                <Route path="/*" element={
+                    <PrivateRoute>
+                        <DashboardLayout />
+                    </PrivateRoute>
+                } />
+            </Routes>
+        </AuthProvider>
+    </HashRouter>
+);
 }
 
 export default App;
